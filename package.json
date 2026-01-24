@@ -2,7 +2,7 @@
   "name": "nuxt-vuetify",
   "version": "1.0.0",
   "description": "Zero-config Vuetify 3 module for Nuxt 4 with performance optimizations.",
-  "repository": "your-org/my-module",
+  "repository": "KHNexTech/nuxt-vuetify",
   "license": "MIT",
   "type": "module",
   "exports": {
