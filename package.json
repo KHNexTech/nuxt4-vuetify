@@ -5,6 +5,14 @@
   "repository": "KHNexTech/nuxt-vuetify",
   "license": "MIT",
   "type": "module",
+  "keywords": [
+    "nuxt",
+    "nuxt 4",
+    "vuetify",
+    "vuetify 3",
+    "nuxt-module",
+    "nuxt-vuetify"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
@@ -37,6 +45,7 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@nuxt/kit": "^4.3.0"
   },
   "devDependencies": {
@@ -50,7 +59,9 @@
     "eslint": "^9.39.2",
     "nuxt": "^4.3.0",
     "typescript": "~5.9.3",
+    "vite-plugin-vuetify": "^2.1.3",
     "vitest": "^4.0.17",
-    "vue-tsc": "^3.2.2"
+    "vue-tsc": "^3.2.2",
+    "vuetify": "^3.11.7"
   }
 }

@@ -8,6 +8,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^10.2.1",
     "nuxt-vuetify ": "latest",
     "nuxt": "^4.3.0"
   }

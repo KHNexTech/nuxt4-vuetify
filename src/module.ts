@@ -1,7 +1,12 @@
 import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
+import type { NuxtVuetifyModuleOptions } from './types'
+
+export * from './types'
 
 // Module options TypeScript interface definition
-export interface ModuleOptions {}
+export interface ModuleOptions extends NuxtVuetifyModuleOptions {
+  enable: boolean
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
