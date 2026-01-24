@@ -14,7 +14,13 @@ importers:
       '@nuxt/kit':
         specifier: ^4.3.0
         version: 4.3.0(magicast@0.5.1)
+      consola:
+        specifier: ^3.4.2
+        version: 3.4.2
     devDependencies:
+      '@mdi/js':
+        specifier: ^7.4.47
+        version: 7.4.47
       '@nuxt/devtools':
         specifier: ^3.1.1
         version: 3.1.1(vite@7.3.1(@types/node@25.0.10)(jiti@2.6.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
@@ -668,6 +674,9 @@ packages:
 
   '@mdi/font@7.4.47':
     resolution: {integrity: sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw==}
+
+  '@mdi/js@7.4.47':
+    resolution: {integrity: sha512-KPnNOtm5i2pMabqZxpUz7iQf+mfrYZyKCZ8QNz85czgEt7cuHcGorWfdzUMWYA0SD+a6Hn4FmJ+YhzzzjkTZrQ==}
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
@@ -5000,6 +5009,8 @@ snapshots:
       - supports-color
 
   '@mdi/font@7.4.47': {}
+
+  '@mdi/js@7.4.47': {}
 
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
