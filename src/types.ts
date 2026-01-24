@@ -85,7 +85,7 @@ export interface NuxtVuetifyOptions {
    *   ssr: false
    * }
    */
-  VuetifyOptions?: CustomVuetifyOptions
+  vuetifyOptions?: CustomVuetifyOptions
   /**
    * Enable tree shaking for Vuetify components and directives
    * set false to disable tree shaking; You set components and directives, or labs with VuetifyOptions
@@ -265,3 +265,29 @@ export interface PersistenceOptions {
   storage?: 'cookie' | 'localStorage' | 'sessionStorage'
   cookieOptions?: CookieOptions
 }
+
+export type VuetifyRuntimeConfig = NuxtVuetifyOptions
+
+export interface NuxtVuetifyRuntimeConfig extends VuetifyRuntimeConfig {
+  options: NuxtVuetifyModuleOptions
+  persistence?: PersistenceOptions
+  logger?: LoggerOptions
+}
+
+// // Module Hook
+// export interface ModuleHooks {
+//   'vuetify:registerModule': (registerModule: (config: ModuleOptions) => void) => HookResult
+// }
+//
+// // Module Runtime Hooks
+// export interface ModuleRuntimeHooks {
+//   'vuetify:configuration': (options: {
+//     isDev: boolean
+//     vuetifyOptions: VuetifyOptions
+//   }) => HookResult
+//   'vuetify:before-create': (options: {
+//     isDev: boolean
+//     vuetifyOptions: VuetifyOptions
+//   }) => HookResult
+//   'vuetify:ready': (vuetify: ReturnType<typeof createVuetify>) => HookResult
+// }

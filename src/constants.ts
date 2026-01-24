@@ -2,7 +2,7 @@ import type { VuetifyOptions } from 'vuetify/framework'
 import type { LoggerOptions, NuxtVuetifyModuleOptions } from './types'
 import { version } from '../package.json'
 
-export const MODULE_NAME = 'nuxt-vuetify-module'
+export const MODULE_NAME = 'nuxt-vuetify'
 export const MODULE_KEY = 'vuetify'
 export const MODULE_VERSION = version
 
@@ -27,7 +27,7 @@ export const MODULE_LOGGER_OPTIONS: LoggerOptions = {
 
 export const DEFAULT_MODULE_OPTIONS: Partial<NuxtVuetifyModuleOptions> = {
   enabled: true,
-  VuetifyOptions: {
+  vuetifyOptions: {
     aliases: {},
     blueprint: 'md3',
     components: [],
