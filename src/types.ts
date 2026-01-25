@@ -266,6 +266,7 @@ export interface PersistenceOptions {
   cookieOptions?: CookieOptions
 }
 
+/* ----Runtime---- */
 export type VuetifyRuntimeConfig = NuxtVuetifyOptions
 
 export interface NuxtVuetifyRuntimeConfig extends VuetifyRuntimeConfig {
@@ -273,21 +274,3 @@ export interface NuxtVuetifyRuntimeConfig extends VuetifyRuntimeConfig {
   persistence?: PersistenceOptions
   logger?: LoggerOptions
 }
-
-// // Module Hook
-// export interface ModuleHooks {
-//   'vuetify:registerModule': (registerModule: (config: ModuleOptions) => void) => HookResult
-// }
-//
-// // Module Runtime Hooks
-// export interface ModuleRuntimeHooks {
-//   'vuetify:configuration': (options: {
-//     isDev: boolean
-//     vuetifyOptions: VuetifyOptions
-//   }) => HookResult
-//   'vuetify:before-create': (options: {
-//     isDev: boolean
-//     vuetifyOptions: VuetifyOptions
-//   }) => HookResult
-//   'vuetify:ready': (vuetify: ReturnType<typeof createVuetify>) => HookResult
-// }

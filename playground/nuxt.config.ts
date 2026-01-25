@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['nuxt-vuetify'],
+  modules: ['nuxt4-vuetify'],
   devtools: { enabled: true },
   compatibilityDate: 'latest',
   vuetify: {},
