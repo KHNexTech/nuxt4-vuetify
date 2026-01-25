@@ -1,6 +1,6 @@
 import { version } from '../package.json'
 
-export const MODULE_NAME = 'nuxt-vuetify'
+export const MODULE_NAME = 'nuxt4-vuetify'
 export const MODULE_KEY = 'vuetify'
 export const MODULE_VERSION = version
 

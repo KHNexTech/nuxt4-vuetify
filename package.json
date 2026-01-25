@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-vuetify",
+  "name": "nuxt4-vuetify",
   "version": "1.0.0",
   "description": "Zero-config Vuetify 3 module for Nuxt 4 with performance optimizations.",
   "repository": "KHNexTech/nuxt-vuetify",
@@ -90,6 +90,7 @@
       "parse-url": "$parse-url"
     },
     "onlyBuiltDependencies": [
+      "@parcel/watcher",
       "esbuild",
       "unrs-resolver"
     ]
