@@ -1,5 +1,5 @@
-import type { DateOptions, IconAliases, JSXComponent, VuetifyOptions } from 'vuetify/framework'
-import type { VUETIFY_ICON_SET, VUETIFY_BLUEPRINT_NAMES, VUETIFY_DATE_ADAPTER_NAMES } from './constants'
+import type { DateOptions, IconAliases, JSXComponent, VuetifyOptions } from 'vuetify'
+import type { VUETIFY_ICON, VUETIFY_BLUEPRINT, VUETIFY_DATE_ADAPTER } from './constants'
 import type { ConsolaOptions } from 'consola'
 
 /*
@@ -130,13 +130,13 @@ export interface NuxtVuetifyOptions {
    * @see https://vuetifyjs.com/en/features/rules/#custom-rules
    * @default false
    */
-  rules: boolean | {
+  rules?: boolean | {
     labs?: boolean
   }
 }
 
 /* ----Vuetify - Blueprint---- */
-export type Blueprint = typeof VUETIFY_BLUEPRINT_NAMES[number]
+export type Blueprint = typeof VUETIFY_BLUEPRINT[number]
 
 /* ----Vuetify - Components---- */
 export type Components = keyof typeof import('vuetify/components')
@@ -150,7 +150,7 @@ export type LabComponents = keyof typeof import('vuetify/labs/components')
 export type VuetifyComponents = Components & LabComponents
 
 /* ----Date---- */
-type DateAdapter = typeof VUETIFY_DATE_ADAPTER_NAMES[number]
+export type DateAdapter = typeof VUETIFY_DATE_ADAPTER[number]
 
 /* ----Theme---- */
 export type ThemeOptions = Exclude<VuetifyOptions['theme'], false>
@@ -171,7 +171,7 @@ interface IconSet {
 }
 
 export interface IconOptions {
-  defaultSet?: typeof VUETIFY_ICON_SET[number]
+  defaultSet?: typeof VUETIFY_ICON[number]
   aliases?: Partial<IconAliases>
   sets?: Record<string, IconSet>
   svg?: {
@@ -193,7 +193,7 @@ export type LocaleOptions = VuetifyOptions['locale']
 /*
  * Custom Vuetify options
  */
-export interface CustomVuetifyOptions extends Partial<Omit<VuetifyOptions, 'aliases' | 'blueprint' | 'components' | 'date' | 'directives' | 'theme' | 'icons' | 'locale'>> {
+export interface CustomVuetifyOptions extends Omit<VuetifyOptions, 'aliases' | 'blueprint' | 'components' | 'date' | 'directives' | 'theme' | 'icons' | 'locale'> {
   /**
    * Vuetify aliases
    */

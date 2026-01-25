@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "nuxt-vuetify -playground",
+  "name": "nuxt-vuetify-playground",
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@nuxtjs/i18n": "^10.2.1",
-    "nuxt-vuetify ": "latest",
+    "nuxt-vuetify": "latest",
     "nuxt": "^4.3.0"
   }
 }
