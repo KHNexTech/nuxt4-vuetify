@@ -30,6 +30,7 @@ export const MODULE_LOGGER_OPTIONS = {
     date: true,
     colors: true,
     compact: true,
+    columns: process.stdout?.columns || 100,
   },
 }
 

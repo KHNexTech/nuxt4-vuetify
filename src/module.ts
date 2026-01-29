@@ -49,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
     const ctx = createContext(moduleOptions, nuxt)
     ctx.resolver! = resolver
     const { logger } = ctx
-    logger.info('Setting up Vuetify module...')
+    logger.info('Setting up Vuetify module... !')
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'))
