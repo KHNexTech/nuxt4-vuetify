@@ -1,14 +1,15 @@
 import { createResolver, hasNuxtModule, useLogger } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
 import type { RuntimeConfig } from 'nuxt/schema'
-import type { NuxtVuetifyModuleOptions } from './types'
-import { MODULE_LOGGER_OPTIONS } from './constants'
+import type { NuxtModuleOptions } from './types'
+import { DEFAULT_MODULE_OPTIONS, MODULE_LOGGER_OPTIONS } from './constants'
 import type { createConsola } from 'consola'
+import defu from 'defu'
 
-type NuxtContextOptions = Omit<NuxtVuetifyModuleOptions, 'enabled' | 'logger'>
+type NuxtContextOptions = Omit<NuxtModuleOptions, 'enabled'>
 
 export interface VuetifyNuxtContext extends Partial<NuxtContextOptions> {
-  options: NuxtContextOptions
+  options: NuxtModuleOptions
   nuxt: Nuxt
   logger: ReturnType<typeof createConsola>
   resolver: ReturnType<typeof createResolver>
@@ -20,25 +21,17 @@ export interface VuetifyNuxtContext extends Partial<NuxtContextOptions> {
   isI18n: boolean
 }
 
-export function createContext(options: NuxtVuetifyModuleOptions, nuxt: Nuxt): VuetifyNuxtContext {
+export function createContext(options: NuxtModuleOptions, nuxt: Nuxt): VuetifyNuxtContext {
   const resolver = createResolver(import.meta.url)
   const runtimeDir = resolver.resolve('../runtime')
   const runtimeConfig = nuxt.options.runtimeConfig
-
   const isI18n = hasNuxtModule('@nuxtjs/i18n', nuxt)
-  const loggerOptions = {
-    ...MODULE_LOGGER_OPTIONS,
-    ...options.logger,
-    formatOptions: {
-      date: true,
-      columns: process.stdout?.columns || 100,
-      ...options.logger,
-    },
-  }
-  const logger = useLogger('module', loggerOptions)
+  const logger = useLogger('module', MODULE_LOGGER_OPTIONS)
+  options.ssr = nuxt.options.ssr !== false
+  const moduleOptions = defu(options, DEFAULT_MODULE_OPTIONS) as NuxtModuleOptions
 
   return {
-    options,
+    options: moduleOptions,
     nuxt,
     logger,
     resolver,
@@ -46,8 +39,11 @@ export function createContext(options: NuxtVuetifyModuleOptions, nuxt: Nuxt): Vu
     runtimeConfig,
     isDev: nuxt.options.dev,
     isProd: !nuxt.options.dev,
-    isSSR: nuxt.options.ssr,
+    isSSR: nuxt.options.ssr || moduleOptions.ssr,
     isI18n,
-    vuetifyOptions: {},
   }
+}
+
+export function addCSS(css: string, nuxt: Nuxt) {
+  nuxt.options.css.push(css)
 }
