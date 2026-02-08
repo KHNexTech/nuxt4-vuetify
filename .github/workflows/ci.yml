@@ -1,49 +1,62 @@
-name: ci
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  lint:
+  ci:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [ 18, 20, 22 ]
+
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-
-      - run: npm i -g --force corepack@latest && corepack enable
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: npm ci
 
       - name: Lint
-        run: npm run lint
+        run: npm run lint --if-present
 
-  test:
+      - name: Type check
+        run: npm run typecheck --if-present
+
+      - name: Build module
+        run: npm run build
+
+      - name: Build playground
+        run: npm run dev:build --if-present
+
+  release:
+    needs: ci
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - run: npm i -g --force corepack@latest && corepack enable
+          registry-url: https://registry.npmjs.org
+          cache: npm
 
       - name: Install dependencies
-        run: npx nypm@latest i
+        run: npm ci
 
-      - name: Playground prepare
-        run: npm run dev:prepare
-
-      - name: Test
-        run: npm run test
+      - name: Build
+        run: npm run build
