@@ -55,7 +55,7 @@ export default defineNuxtConfig({
     styles: true,
     customVariables: undefined,
     transformAssetUrls: true,
-    importComposable: false,
-    prefixComposables: 'Vuetify',
+    importComposable: true,
+    prefixComposables: false,
   },
 })

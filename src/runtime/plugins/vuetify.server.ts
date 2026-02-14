@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useRuntimeConfig } from '#app'
-import type { ThemeDefinition as VuetifyThemeDefinition, ThemeDefinition } from 'vuetify'
+import type { ThemeDefinition } from 'vuetify'
 import { createVuetify } from 'vuetify'
 import * as directives from 'vuetify/directives'
 
@@ -7,7 +7,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig().public.vuetify
 
   // ── Build theme config (same as the client but SSR-aware) ──
-  const themes: Record<string, VuetifyThemeDefinition> = {}
+  const themes: Record<string, ThemeDefinition> = {}
 
   themes.light = {
     dark: false,
@@ -99,6 +99,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           dateConfig.adapter = mod.default || mod
         }
         catch {
+          console.warn(
+            '[nuxt-custom-vuetify] date-fns adapter requires:\n'
+            + '  npm install date-fns @date-io/date-fns',
+          )
           dateConfig = undefined
         }
         break
@@ -109,6 +113,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           dateConfig.adapter = mod.default || mod
         }
         catch {
+          console.warn(
+            '[nuxt-custom-vuetify] luxon adapter requires:\n'
+            + '  npm install luxon @date-io/luxon',
+          )
           dateConfig = undefined
         }
         break
@@ -119,6 +127,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           dateConfig.adapter = mod.default || mod
         }
         catch {
+          console.warn(
+            '[nuxt-custom-vuetify] dayjs adapter requires:\n'
+            + '  npm install dayjs @date-io/dayjs',
+          )
           dateConfig = undefined
         }
         break
@@ -129,6 +141,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           dateConfig.adapter = mod.default || mod
         }
         catch {
+          console.warn(
+            '[nuxt-custom-vuetify] moment adapter requires:\n'
+            + '  npm install moment @date-io/moment',
+          )
           dateConfig = undefined
         }
         break
@@ -139,11 +155,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           dateConfig.adapter = mod.default || mod
         }
         catch {
+          console.warn(
+            '[nuxt-custom-vuetify] js-joda adapter requires:\n'
+            + '  npm install @js-joda/core @date-io/js-joda',
+          )
           dateConfig = undefined
         }
         break
       }
       default:
+        console.warn(`[nuxt-custom-vuetify] Unknown date adapter: "${dateOpts.adapter}"`)
         dateConfig = undefined
     }
 
@@ -182,7 +203,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         const mod = await import(/* @vite-ignore */ `vuetify/components/${componentName}`)
         resolvedAliases[alias] = mod[componentName as string] || mod.default
       }
-      catch { /* skip */
+      catch {
+        console.warn(`[nuxt-custom-vuetify] Could not resolve alias "${alias}" → "${componentName}"`)
       }
     }
     if (Object.keys(resolvedAliases).length > 0) {

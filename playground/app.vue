@@ -9,9 +9,9 @@
       <v-spacer />
       <v-btn
         icon
-        @click="toggleTheme"
+        @click="toggleTheme()"
       >
-        <v-icon>{{ isDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
+        <v-icon>{{ themeIsDark ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -31,24 +31,24 @@
                 Theme
               </v-card-title>
               <v-card-text>
-                <p>Current: <strong>{{ currentTheme }}</strong></p>
-                <p>Dark mode: <strong>{{ isDark }}</strong></p>
+                <p>Current: <strong>{{ themeName }}</strong></p>
+                <p>Dark mode: <strong>{{ themeIsDark }}</strong></p>
                 <v-btn-group class="mt-2">
                   <v-btn
                     size="small"
-                    @click="setTheme('light')"
+                    @click="changeTheme('light')"
                   >
                     Light
                   </v-btn>
                   <v-btn
                     size="small"
-                    @click="setTheme('dark')"
+                    @click="changeTheme('dark')"
                   >
                     Dark
                   </v-btn>
                   <v-btn
                     size="small"
-                    @click="setTheme('ocean')"
+                    @click="changeTheme('ocean')"
                   >
                     Ocean
                   </v-btn>
@@ -244,16 +244,27 @@
 </template>
 
 <script setup lang="ts">
-// Extended composables (auto-imported)
-const { currentTheme, isDark, toggleTheme, setTheme } = useVuetifyTheme()
-const { mobile, width, name: breakpointName, mdAndUp } = useVuetifyDisplay()
-const { goTo, scrollToTop } = useVuetifyGoTo()
+const vuetifyTheme = useTheme()
+const themeName = computed(() => vuetifyTheme.global.name.value)
+const themeIsDark = computed(() => vuetifyTheme.global.current.value.dark)
+const changeTheme = (name: string) => {
+  vuetifyTheme.global.name.value = name
+}
+const toggleTheme = () => {
+  vuetifyTheme.global.name.value = themeIsDark.value ? 'light' : 'dark'
+}
 
-// Locale
-const { current: localeCurrent, isRtl } = useVuetifyLocale()
+const { name, mobile, width, mdAndUp } = useDisplay()
+const breakpointName = computed(() => name.value)
 
-// goTo demo
-function scrollToSection() {
-  goTo('#bottom-anchor', { duration: 500 })
+const { current, isRtl } = useLocale()
+const localeCurrent = computed(() => current.value)
+
+const goTo = useGoTo()
+const scrollToTop = () => {
+  goTo(0)
+}
+const scrollToSection = () => {
+  goTo('#bottom-anchor')
 }
 </script>

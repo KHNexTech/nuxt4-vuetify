@@ -316,17 +316,50 @@ export type Blueprint = typeof VUETIFY_BLUEPRINT[number]
 export type DateAdapter = typeof VUETIFY_DATE_ADAPTER[number]
 
 /* ----Persistence---- */
-export interface CookieOptions {
+export interface PersistenceConfigOptions {
+  /** Enable persistence for this feature @default true */
+  enabled?: boolean
+  /**
+   * Storage backend:
+   * - 'cookie' — SSR-safe via useCookie (recommended for theme/locale)
+   * - 'localStorage' — client-only, larger capacity (good for defaults/drawer)
+   * @default 'cookie'
+   */
+  storage?: 'cookie' | 'localStorage'
+  /** Storage key name @default varies per feature */
+  key?: string
+  /** Max age in seconds (cookie storage only) @default 31536000 (1 year) */
   maxAge?: number
-  path?: string
-  sameSite?: 'lax' | 'strict' | 'none'
 }
 
 export interface PersistenceOptions {
-  enabled?: boolean
-  key?: string
-  storage?: 'cookie' | 'localStorage' | 'sessionStorage'
-  cookieOptions?: CookieOptions
+  /**
+   * Persist the active theme name (e.g. 'light', 'dark', 'ocean').
+   * On page load, the saved theme is restored automatically.
+   * @default { enabled: true, storage: 'cookie', key: 'vuetify-theme' }
+   */
+  theme?: boolean | PersistenceConfigOptions
+
+  /**
+   * Persist the active locale code (e.g. 'en', 'ar', 'zh').
+   * On page load, the saved locale is restored automatically.
+   * @default { enabled: false }
+   */
+  locale?: boolean | PersistenceConfigOptions
+
+  /**
+   * Persist runtime component defaults overrides.
+   * Stores the defaults object the user has changed at runtime.
+   * @default { enabled: false }
+   */
+  defaults?: boolean | PersistenceConfigOptions
+
+  /**
+   * Persist navigation drawer open/closed state.
+   * Stores a Record<string, boolean> of drawer IDs → open state.
+   * @default { enabled: false }
+   */
+  drawer?: boolean | PersistenceConfigOptions
 }
 
 /* ----Runtime---- */
