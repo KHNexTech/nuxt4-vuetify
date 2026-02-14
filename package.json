@@ -50,16 +50,16 @@
   },
   "devDependencies": {
     "@mdi/js": "^7.4.47",
-    "@nuxt/devtools": "^3.1.1",
-    "@nuxt/eslint-config": "^1.13.0",
-    "@nuxt/kit": "^4.3.0",
+    "@nuxt/devtools": "^3.2.1",
+    "@nuxt/eslint-config": "^1.15.1",
+    "@nuxt/kit": "^4.3.1",
     "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.3.0",
+    "@nuxt/schema": "^4.3.1",
     "@nuxt/test-utils": "^3.23.0",
     "@types/node": "latest",
     "changelogen": "^0.6.2",
     "eslint": "^9.39.2",
-    "nuxt": "^4.3.0",
+    "nuxt": "^4.3.1",
     "sass": "^1.97.3",
     "typescript": "~5.9.3",
     "vite-plugin-vuetify": "^2.1.3",
@@ -68,13 +68,13 @@
     "vuetify": "^3.11.8"
   },
   "peerDependencies": {
-    "vite-plugin-vuetify": "^2.1.3",
-    "vuetify": "^3.11.7",
     "@date-io/date-fns": "^2.x",
-    "@date-io/luxon": "^2.x",
     "@date-io/dayjs": "^2.x",
+    "@date-io/js-joda": "^2.x",
+    "@date-io/luxon": "^2.x",
     "@date-io/moment": "^2.x",
-    "@date-io/js-joda": "^2.x"
+    "vite-plugin-vuetify": "^2.1.3",
+    "vuetify": "^3.11.7"
   },
   "peerDependenciesMeta": {
     "vuetify": {
